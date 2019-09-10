@@ -8,6 +8,7 @@ class Indicado extends Model
 {
     protected $primaryKey = 'id_indicado';
     const CREATED_AT = 'data_indicacao';
+    
     protected $fillable = [
         'nome_indicado', 
         'cpf_indicado',
@@ -18,6 +19,6 @@ class Indicado extends Model
         'usuario_indicador'
     ];
     public function indicadoPor(){
-        return $this->belongsTo('App\User', 'user_indicador');
+        return $this->belongsTo('App\Usuario', 'usuario_indicador');
     }
 }

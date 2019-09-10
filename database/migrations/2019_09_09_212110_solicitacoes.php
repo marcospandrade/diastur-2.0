@@ -14,7 +14,7 @@ class Solicitacoes extends Migration
     public function up()
     {
         Schema::create('solicitacoes', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_solicitacao');
             $table->unsignedInteger('usuario_solicitante')->unsigned();
             $table->foreign('usuario_solicitante')
                   ->references('id')->on('usuarios');

@@ -14,7 +14,7 @@ class Itinerarios extends Migration
     public function up()
     {
         Schema::create('itinerarios', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_itinerario');
             $table->string('origem_itinerario');
             $table->string('destino_itinerario');
             $table->string('banner_itinerario');

@@ -3,7 +3,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-class User extends Authenticatable
+class Usuario extends Authenticatable
 {
     use Notifiable, HasApiTokens;
     
@@ -19,20 +19,20 @@ class User extends Authenticatable
         'telefone_usuario', 
         'password', 
         'tipo_usuario', 
-        'foto__usuario', 
+        'foto_usuario', 
         'pontuacao_usuario',
         'indicados',
         'solicitacoes',
         'transferencias'
     ];
     public function listaIndicados(){
-        return $this->hasMany('App\Indicado');
+        return $this->hasMany('App\Indicado', 'indicados');
     }
     public function listaSolicitacoes(){
-        return $this->hasMany('App\Solicitacao');
+        return $this->hasMany('App\Solicitacao', 'solicitacoes');
     }
     public function listaTransferencias(){
-        return $this->hasMany('App\Transferencia');
+        return $this->hasMany('App\Transferencia', 'transferencias');
     }
     
 }

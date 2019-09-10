@@ -13,7 +13,7 @@ class Transferencias extends Migration
     public function up()
     {
         Schema::create('transferencias', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_transferencia');
             $table->integer('quantidade_pontos');
             $table->unsignedInteger('usuario_transferidor')->unsigned()->nullable();
             $table->foreign('usuario_transferidor')
