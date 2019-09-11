@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/blog', function () {
+    return view('blog');
 });
+Route::get('/', function () {
+    return view('welcome1');
+});
+Route::get('{path}', 'HomeController@index')->where( 'path', '(?:[A-z\\d\\/_.]+)?' );
