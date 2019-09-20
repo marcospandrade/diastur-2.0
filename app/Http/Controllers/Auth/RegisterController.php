@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Usuario;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -22,6 +22,15 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+
+    protected function authenticated(Request $request, $user){
+        if($user->isAdminOrAuthor() ){
+            return redirect()->route('dashboard');
+        }else{
+            return redirect()->route('profile');
+        }
+        
+    }
 
     /**
      * Where to redirect users after registration.
@@ -49,11 +58,13 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'nome_usuario' => ['required', 'string', 'max:255'],
+            'cpf_usuario' => ['required', 'min:11', 'max:14', 'unique:usuarios'],
+            'email_usuario' => ['required', 'string', 'email', 'max:255', 'unique:usuarios'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
     }
+
 
     /**
      * Create a new user instance after a valid registration.
@@ -64,8 +75,14 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+            'nome_usuario' => $data['nome_usuario'],
+            'cpf_usuario' => $data['cpf_usuario'],
+            'email_usuario' => $data['email_usuario'],
+            'telefone_usuario' => $data['telefone_usuario'],
+            'tipo_usuario' => 'user',
+            'indicados' => 0,
+            'solicitacoes' => 0,
+            'transferencias' => 0,
             'password' => Hash::make($data['password']),
         ]);
     }

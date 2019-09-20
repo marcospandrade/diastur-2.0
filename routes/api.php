@@ -36,11 +36,11 @@ Route::get('usuariosCadastrados', 'API\TransferenciaController@usersCadastrados'
 Route::post('registrarTransferencia', 'API\TransferenciaController@registrarTransferencia');
 
 //Usuario
-Route::apiResources(['user' => 'API\UserController']);
-Route::get('perfil', 'API\UserController@profile');
-Route::put('atualizarPerfil', 'API\UserController@updateProfile');
-Route::get('buscarMeuId', 'API\UserController@getMyID');
-Route::get('buscarUsuario', 'API\UserController@search');
+Route::apiResources(['user' => 'API\UsuarioController']);
+Route::get('perfil', 'API\UsuarioController@profile');
+Route::put('atualizarPerfil', 'API\UsuarioController@updateProfile');
+Route::get('buscarMeuId', 'API\UsuarioController@getMyID');
+Route::get('buscarUsuario', 'API\UsuarioController@search');
 
 //Contato
 Route::post('formularioContato', 'ContatoController@store');
